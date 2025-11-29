@@ -24,10 +24,6 @@ spec:
         app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
         app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     spec:
-    {{- if .Values.jellyfin.enableDLNA }}
-      hostNetwork: true
-      dnsPolicy: ClusterFirstWithHostNet
-    {{- end }}
     {{- if and .Values.jellyfin.tailscale.enabled .Values.jellyfin.tailscale.sidecar.enabled }}
       serviceAccountName: jellyfin-tailscale
     {{- end }}
@@ -65,12 +61,6 @@ spec:
             - name: http
               containerPort: {{ .Values.jellyfin.service.port }}
               protocol: TCP
-          {{ if .Values.jellyfin.enableDLNA }}
-            - name: dlna
-              containerPort: 1900
-              hostPort: 1900
-              protocol: UDP
-          {{- end }}
         {{ if .Values.jellyfin.livenessProbe.enabled }}
           livenessProbe:
           {{ if .Values.jellyfin.livenessProbe.initialDelaySeconds }}
