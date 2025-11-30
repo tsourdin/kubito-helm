@@ -3,7 +3,6 @@
 ## @section Jellyfin parameters
 
 ## @param jellyfin.enabled Whether to enable Jellyfin.
-## @param jellyfin.replicaCount The number of replicas to deploy.
 ## @param jellyfin.image.repository The Docker repository to pull the image from.
 ## @param jellyfin.image.tag The image tag to use.
 ## @param jellyfin.image.pullPolicy The logic of image pulling.
@@ -71,7 +70,6 @@
 ##
 jellyfin:
   enabled: true
-  replicaCount: 1
 
   image:
     repository: lscr.io/linuxserver/jellyfin
