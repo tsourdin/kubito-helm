@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
 spec:
   strategy:
-    type: Recreate
+    {{- .Values.jellyfin.deployment.strategy | toYaml | nindent 4 }}
   replicas: 1
   selector:
     matchLabels:
