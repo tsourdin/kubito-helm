@@ -67,42 +67,24 @@ spec:
               protocol: TCP
         {{ if .Values.jellyfin.livenessProbe.enabled }}
           livenessProbe:
-          {{ if .Values.jellyfin.livenessProbe.initialDelaySeconds }}
-            initialDelaySeconds: {{ .Values.jellyfin.livenessProbe.initialDelaySeconds }}
-          {{- end }}
-          {{ if .Values.jellyfin.livenessProbe.periodSeconds }}
-            periodSeconds: {{ .Values.jellyfin.livenessProbe.periodSeconds }}
-          {{- end }}
-          {{ if .Values.jellyfin.livenessProbe.timeoutSeconds }}
-            timeoutSeconds: {{ .Values.jellyfin.livenessProbe.timeoutSeconds }}
-          {{- end }}
-          {{ if .Values.jellyfin.livenessProbe.failureThreshold }}
-            failureThreshold: {{ .Values.jellyfin.livenessProbe.failureThreshold }}
-          {{- end }}
-          {{ if .Values.jellyfin.livenessProbe.successThreshold }}
-            successThreshold: {{ .Values.jellyfin.livenessProbe.successThreshold }}
-          {{- end }}
-            tcpSocket:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3
+            successThreshold: 1
+            httpGet:
+              path: /health
               port: http
         {{- end }}
         {{ if .Values.jellyfin.readinessProbe.enabled }}
           readinessProbe:
-          {{ if .Values.jellyfin.readinessProbe.initialDelaySeconds }}
-            initialDelaySeconds: {{ .Values.jellyfin.readinessProbe.initialDelaySeconds }}
-          {{- end }}
-          {{ if .Values.jellyfin.readinessProbe.periodSeconds }}
-            periodSeconds: {{ .Values.jellyfin.readinessProbe.periodSeconds }}
-          {{- end }}
-          {{ if .Values.jellyfin.readinessProbe.timeoutSeconds }}
-            timeoutSeconds: {{ .Values.jellyfin.readinessProbe.timeoutSeconds }}
-          {{- end }}
-          {{ if .Values.jellyfin.readinessProbe.failureThreshold }}
-            failureThreshold: {{ .Values.jellyfin.readinessProbe.failureThreshold }}
-          {{- end }}
-          {{ if .Values.jellyfin.readinessProbe.successThreshold }}
-            successThreshold: {{ .Values.jellyfin.readinessProbe.successThreshold }}
-          {{- end }}
-            tcpSocket:
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3
+            successThreshold: 1
+            httpGet:
+              path: /health
               port: http
         {{- end }}
           volumeMounts:
